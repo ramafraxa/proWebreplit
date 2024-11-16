@@ -1,9 +1,25 @@
-ARG PORT=443
-FROM cypress/broawser:latest
-RUN apt-get install python 3 -y
-RUN echo $(python3 -m site --user-base)
-COPY requierments.txt .
-ENV  PATH /home/root/.local/bin:${PATH}
-RUN apt-get update && apt-get install -y python3-pip && pip install -r requierments.txt
-COPY . .
-CMD uvicorn main:app --host 0.0.0.0 --port  $PORT
+# Utiliser une image Python légère
+FROM python:3.9-slim
+
+# Installer les dépendances nécessaires pour Selenium
+RUN apt-get update && apt-get install -y \
+    python3-pip \
+    chromium-driver \
+    chromium-browser
+
+# Copier les fichiers nécessaires dans l'image Docker
+WORKDIR /app
+COPY requierments.txt /app/requirements.txt
+
+# Installer les dépendances Python
+RUN pip3 install --no-cache-dir -r requirements.txt
+
+# Copier le reste des fichiers
+COPY . /app
+
+# Exposer le port utilisé par Flask
+EXPOSE 5000
+
+# Lancer l'application Flask avec Gunicorn
+CMD ["gunicorn", "--bind", "0.0.0.0:5000", "mafra:app"]
+
