@@ -7,7 +7,7 @@ RUN apt-get update && apt-get install -y \
     python3-pip
 
 # Copier les fichiers nécessaires
-COPY requirements.txt /app/requirements.txt
+COPY requierments.txt /app/requierments.txt
 WORKDIR /app
 
 # Installer les dépendances Python
