@@ -13,8 +13,8 @@ RUN apt-get update && apt-get install -y \
 WORKDIR /app
 
 # Copier le fichier requirements.txt et installer les dépendances Python
-COPY requirements.txt /app/requirements.txt
-RUN pip3 install --no-cache-dir -r /app/requirements.txt
+COPY requierments.txt /app/requierments.txt
+RUN pip3 install --no-cache-dir -r /app/requierments.txt
 
 # Copier le reste des fichiers du projet
 COPY . /app
