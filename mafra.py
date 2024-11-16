@@ -16,7 +16,8 @@ def download_selenium():
         chrome_options.add_argument('--disable-dev-shm-usage')
 
         # Installer et configurer le service pour ChromeDriver
-        driver = webdriver.Chrome(service=Service(ChromeDriverManager(version="130.0.6723.116").install()), options=chrome_options)
+        driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=chrome_options)
+
         
         # Charger la page Google
         driver.get("https://www.google.com/")
