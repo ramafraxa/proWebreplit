@@ -23,7 +23,7 @@ def download_selenium():
         driver.quit()
 
         # Retourner le titre dans un dictionnaire
-        return jsonify({'Page title': title})
+        return jsonify({'Page titre io': title})
 
     except Exception as e:
         # Capturer et retourner l'erreur
