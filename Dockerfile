@@ -1,11 +1,10 @@
-# Utiliser une image Python légère
-FROM python:3.9-slim
+# Utiliser une image Selenium avec Chrome préconfiguré
+FROM selenium/standalone-chrome:114.0
 
-# Mettre à jour et installer les dépendances nécessaires
+# Installer les dépendances Python nécessaires
+USER root
 RUN apt-get update && apt-get install -y \
     python3-pip \
-    chromium=130.0.6723.116-1~deb11u1 \
-    chromium-driver=130.0.6723.116-1~deb11u1 \
     --no-install-recommends && \
     apt-get clean && rm -rf /var/lib/apt/lists/*
 
