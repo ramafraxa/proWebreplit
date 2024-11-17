@@ -1,11 +1,11 @@
 # Utiliser une image Python légère
 FROM python:3.9-slim
 
-# Mettre à jour et installer les dépendances nécessaires pour Selenium
+# Mettre à jour et installer les dépendances nécessaires
 RUN apt-get update && apt-get install -y \
     python3-pip \
-    chromium \
-    chromium-driver \
+    chromium=130.0.6723.116-1~deb11u1 \
+    chromium-driver=130.0.6723.116-1~deb11u1 \
     --no-install-recommends && \
     apt-get clean && rm -rf /var/lib/apt/lists/*
 
